@@ -20,10 +20,15 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation(project(":core"))
+    implementation(project(":infrastructure"))
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // DynamoDB
+    implementation("com.github.derjust:spring-data-dynamodb:5.1.0")
 
     // Spring test
     testImplementation("org.springframework.boot:spring-boot-starter-test") {

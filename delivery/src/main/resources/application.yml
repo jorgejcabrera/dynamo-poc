@@ -1,0 +1,10 @@
+environment: local
+
+amazon:
+  region: eu-east-1
+  end-point:
+    url: http://localhost:8000/
+
+secret:
+  aws_key: root
+  aws_secret_key: pass

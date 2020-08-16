@@ -3,9 +3,9 @@ package com.demo.dynamopoc.core.book
 import java.util.*
 
 interface Book {
-    val title: String?
-    val group: String?
-    val createdDate: Date?
-    val price: Double?
-    val rating: Int?
+    var title: String
+    var group: String
+    var createdDate: Date?
+    var price: Double
+    var rating: Int
 }
