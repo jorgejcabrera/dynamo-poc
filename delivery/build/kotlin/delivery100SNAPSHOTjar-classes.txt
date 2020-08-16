@@ -1,0 +1,1 @@
+/Users/jorge.cabrera/workspace/dynamo-poc/delivery/build/classes/kotlin/main/com/demo/dynamopoc/DynamoPocApplication.class:/Users/jorge.cabrera/workspace/dynamo-poc/delivery/build/classes/kotlin/main/com/demo/dynamopoc/DynamoPocApplicationKt.class
