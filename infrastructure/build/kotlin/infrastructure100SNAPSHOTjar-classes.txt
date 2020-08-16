@@ -1,0 +1,1 @@
+/Users/jorge.cabrera/workspace/dynamo-poc/infrastructure/build/classes/kotlin/main/com/demo/dynamopoc/infrastructure/dynamo/DynamoBook.class:/Users/jorge.cabrera/workspace/dynamo-poc/infrastructure/build/classes/kotlin/main/com/demo/dynamopoc/infrastructure/dynamo/DynamoBookRepository.class
