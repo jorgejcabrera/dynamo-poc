@@ -1,6 +1,5 @@
 .gradle
 /build/
-*build*
 infrastructure/build/*
 core/build/*
 delivery/build/*
