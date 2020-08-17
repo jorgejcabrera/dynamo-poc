@@ -1,6 +1,6 @@
 package com.demo.dynamopoc.core.book
 
-enum class Group {
+enum class Category {
     ADVENTURE,
     ART,
     CLASSIC,

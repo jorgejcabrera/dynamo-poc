@@ -4,7 +4,7 @@ import java.util.*
 
 interface Book {
     var title: String
-    var group: Group?
+    var category: Category?
     var createdDate: Date?
     var price: Double
     var rating: Int

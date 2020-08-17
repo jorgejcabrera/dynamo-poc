@@ -2,7 +2,7 @@ package com.demo.dynamopoc.infrastructure.dynamo
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*
 import com.demo.dynamopoc.core.book.Book
-import com.demo.dynamopoc.core.book.Group
+import com.demo.dynamopoc.core.book.Category
 import java.util.*
 
 @DynamoDBTable(tableName = "Book")
@@ -10,7 +10,7 @@ class DynamoBook : Book {
     // Partition key
     @get:DynamoDBHashKey(attributeName = "group")
     @DynamoDBTypeConvertedEnum
-    override var group: Group?
+    override var category: Category?
 
     // Local secondary index
     @get:DynamoDBAttribute(attributeName = "title")
@@ -33,13 +33,13 @@ class DynamoBook : Book {
         this.title = ""
         this.price = 0.0
         this.rating = 0
-        this.group = null
+        this.category = null
         this.createdDate = null
     }
 
     constructor(
             title: String,
-            group: Group,
+            group: Category,
             createdDate: Date,
             price: Double,
             rating: Int
@@ -47,7 +47,7 @@ class DynamoBook : Book {
         this.title = title
         this.price = price
         this.rating = rating
-        this.group = group
+        this.category = group
         this.createdDate = createdDate
     }
 }
