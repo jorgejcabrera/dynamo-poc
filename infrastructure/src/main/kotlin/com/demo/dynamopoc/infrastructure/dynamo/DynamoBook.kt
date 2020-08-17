@@ -2,13 +2,15 @@ package com.demo.dynamopoc.infrastructure.dynamo
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*
 import com.demo.dynamopoc.core.book.Book
+import com.demo.dynamopoc.core.book.Group
 import java.util.*
 
 @DynamoDBTable(tableName = "Book")
 class DynamoBook : Book {
     // Partition key
     @get:DynamoDBHashKey(attributeName = "group")
-    override var group: String
+    @DynamoDBTypeConvertedEnum
+    override var group: Group?
 
     // Local secondary index
     @get:DynamoDBAttribute(attributeName = "title")
@@ -31,11 +33,17 @@ class DynamoBook : Book {
         this.title = ""
         this.price = 0.0
         this.rating = 0
-        this.group = ""
+        this.group = null
         this.createdDate = null
     }
 
-    constructor(title: String, group: String, createdDate: Date, price: Double, rating: Int) {
+    constructor(
+            title: String,
+            group: Group,
+            createdDate: Date,
+            price: Double,
+            rating: Int
+    ) {
         this.title = title
         this.price = price
         this.rating = rating

@@ -6,8 +6,8 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput
 import com.amazonaws.services.dynamodbv2.model.ResourceInUseException
 import com.demo.dynamopoc.infrastructure.dynamo.DynamoBook
+import com.demo.dynamopoc.infrastructure.dynamo.DynamoBookFactory
 import org.slf4j.LoggerFactory
-import java.util.*
 
 class DynamoSchemaInitializer(private val dynamoDBMapper: DynamoDBMapper,
                               private val amazonDynamoDB: AmazonDynamoDB) {
@@ -17,13 +17,11 @@ class DynamoSchemaInitializer(private val dynamoDBMapper: DynamoDBMapper,
     }
 
     private fun initializeWithSomeBooks() {
-        dynamoDBMapper.save(DynamoBook(
-                title = "El Hobbit",
-                group = "ADVENTURE",
-                createdDate = Date(),
-                price = 100.0,
-                rating = 5
-        ))
+        val factory = DynamoBookFactory()
+        repeat(10000) {
+            dynamoDBMapper.save(factory.randomBook())
+            LOGGER.debug("Creating a new dynamo book")
+        }
     }
 
     private fun createBookTable() {

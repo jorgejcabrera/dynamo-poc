@@ -10,6 +10,9 @@ class RetrieveDBMeasures(
 
     fun execute(): Report {
         val noSqlScanQueryTime = measureTimeMillis { noSqlBookRepository.findAll() }
-        return Report(sqlScanQueryTime = noSqlScanQueryTime, noSqlScanQueryTime = noSqlScanQueryTime)
+        return Report(
+                sqlScanQueryTime = noSqlScanQueryTime,
+                noSqlScanQueryTime = noSqlScanQueryTime
+        )
     }
 }
