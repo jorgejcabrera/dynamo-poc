@@ -25,7 +25,7 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
         mapper.save(book)
     }
 
-    override fun findAllByCreatedDateBeforeAt(date: Date): List<Book> {
+    override fun findAllByCreatedDateBefore(date: Date): List<Book> {
         val mapped = AttributeValue().withS(dateFormatter.format(date))
         val args = Collections.singletonMap(":v1", mapped)
         val query = DynamoDBScanExpression()
@@ -33,5 +33,9 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
                 .withFilterExpression("created_date < :v1")
                 .withExpressionAttributeValues(args)
         return mapper.scan(DynamoBook::class.java, query)
+    }
+
+    override fun findAllByPriceGreaterThan(price: Double): List<Book> {
+        TODO("Not yet implemented")
     }
 }

@@ -13,7 +13,11 @@ class MySqlBookRepository(private val jpaBookRepository: JpaBookRepository) : Bo
         jpaBookRepository.save(book as MySqlBook)
     }
 
-    override fun findAllByCreatedDateBeforeAt(date: Date): List<Book> {
-        TODO("Not yet implemented")
+    override fun findAllByCreatedDateBefore(date: Date): List<Book> {
+        return jpaBookRepository.findAllByCreatedDateBefore(date)
+    }
+
+    override fun findAllByPriceGreaterThan(price: Double): List<Book> {
+        return jpaBookRepository.findAllByPriceGreaterThan(price)
     }
 }

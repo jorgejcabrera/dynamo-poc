@@ -13,14 +13,16 @@ class RetrieveDBMeasures(
 ) {
 
     fun execute(): Report {
-        var report = Report(mutableMapOf(), mutableMapOf())
+        val report = Report(mutableMapOf(), mutableMapOf())
         val noSqlScanQueryTime = measureTimeMillis { noSqlBookRepository.findAll() }
         val sqlScanQueryTime = measureTimeMillis { sqlBookRepository.findAll() }
         report.dynamoMeasures["scan_query_time"] = noSqlScanQueryTime
         report.mySqlMeasures["scan_query_time"] = sqlScanQueryTime
 
-
-        noSqlBookRepository.findAllByCreatedDateBeforeAt(Date())
+        val noSqlQueryTimeByDate = measureTimeMillis { noSqlBookRepository.findAllByCreatedDateBefore(Date()) }
+        val sqlQueryTimeByDate = measureTimeMillis { sqlBookRepository.findAllByCreatedDateBefore(Date()) }
+        report.dynamoMeasures["date_query_time"] = noSqlQueryTimeByDate
+        report.mySqlMeasures["date_query_time"] = sqlQueryTimeByDate
         return report
     }
 
