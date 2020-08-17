@@ -13,7 +13,7 @@ const val dbMeasuresPath = "/database/measures"
 @RestController
 @RequestMapping(dbMeasuresPath)
 class RetrieveDBMeasuresController(private val retrieveDBMeasures: RetrieveDBMeasures) {
-    
+
     @GetMapping
     fun retrieveDBMeasures(): ResponseEntity<Report> {
         val report = retrieveDBMeasures.execute()

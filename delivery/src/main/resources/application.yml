@@ -5,6 +5,20 @@ amazon:
   end-point:
     url: http://localhost:8000/
 
+spring:
+  application:
+    name: dynamo-poc
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    url: jdbc:mysql://localhost:3306/dynamo_poc?allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useSSL=false
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
 secret:
   aws_key: root
   aws_secret_key: pass
+  mysql_usr: user
+  mysql_pwd: admin

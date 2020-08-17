@@ -1,4 +1,4 @@
-package com.demo.dynamopoc.delivery.configuration
+package com.demo.dynamopoc.delivery.configuration.datasource.dynamo
 
 import com.amazonaws.auth.AWSCredentials
 import com.amazonaws.auth.AWSStaticCredentialsProvider

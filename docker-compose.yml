@@ -2,6 +2,7 @@ version: '3.7'
 services:
 
   dynamodb:
+    container_name: dynamo_db
     image: amazon/dynamodb-local:latest
     ports:
       - "8000:8000"
@@ -10,3 +11,15 @@ services:
       AWS_SECRET_ACCESS_KEY: pass
       AWS_REGION: us-east-1
     command: ["-jar", "DynamoDBLocal.jar", "-sharedDb", "-inMemory"]
+
+  mysqldb:
+    container_name: mysql_db
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: dynamo_poc
+      MYSQL_USER: user
+      MYSQL_PASSWORD: admin

@@ -1,4 +1,4 @@
-package com.demo.dynamopoc.delivery.configuration
+package com.demo.dynamopoc.delivery.configuration.datasource.dynamo
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
@@ -18,9 +18,9 @@ class DynamoSchemaInitializer(private val dynamoDBMapper: DynamoDBMapper,
 
     private fun initializeWithSomeBooks() {
         val factory = DynamoBookFactory()
-        repeat(10000) {
+        repeat(10) {
             dynamoDBMapper.save(factory.randomBook())
-            LOGGER.debug("Creating a new dynamo book")
+            LOGGER.debug("Creating a new dynamo book...")
         }
     }
 

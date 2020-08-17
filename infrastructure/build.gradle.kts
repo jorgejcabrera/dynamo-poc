@@ -17,6 +17,10 @@ dependencies {
     // DynamoDB
     implementation("com.amazonaws:aws-java-sdk-dynamodb:1.11.573")
     implementation("com.github.derjust:spring-data-dynamodb:5.1.0")
+
+    // MySql
+    implementation("javax.persistence:persistence-api:1.0")
+    runtimeOnly("mysql:mysql-connector-java")
 }
 
 configure<JavaPluginConvention> {
