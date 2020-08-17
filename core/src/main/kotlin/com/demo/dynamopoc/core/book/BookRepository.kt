@@ -7,4 +7,5 @@ interface BookRepository {
     fun save(book: Book)
     fun findAllByCreatedDateBefore(date: Date): List<Book>
     fun findAllByPriceGreaterThan(price: Double): List<Book>
+    fun findAllByCategoryAndPriceGreaterThan(category: Category, price: Double): List<Book>
 }

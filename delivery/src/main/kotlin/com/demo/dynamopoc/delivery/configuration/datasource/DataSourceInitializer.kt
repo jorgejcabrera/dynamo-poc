@@ -19,7 +19,7 @@ class DataSourceInitializer(
     }
 
     private fun createAndSaveSomeBooks() {
-        repeat(100) {
+        repeat(10000) {
             val book = bookFactory.randomBook() as BookDto
             noSqlBookRepository.save(book.toDynamoBook())
             sqlBookRepository.save(book.toMySqlBook())

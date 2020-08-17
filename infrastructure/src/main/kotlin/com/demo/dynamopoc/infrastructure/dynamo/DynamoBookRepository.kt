@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression
 import com.amazonaws.services.dynamodbv2.model.AttributeValue
 import com.demo.dynamopoc.core.book.Book
 import com.demo.dynamopoc.core.book.BookRepository
+import com.demo.dynamopoc.core.book.Category
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,5 +43,17 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
                 .withIndexName("price_idx")
                 .withFilterExpression("price > :v1")
                 .withExpressionAttributeValues(args)
-        return mapper.scan(DynamoBook::class.java, query)    }
+        return mapper.scan(DynamoBook::class.java, query)
+    }
+
+    override fun findAllByCategoryAndPriceGreaterThan(category: Category, price: Double): List<Book> {
+        val args = mutableMapOf<String, AttributeValue>()
+        args[":v1"] = AttributeValue().withN(price.toString())
+        args[":v2"] = AttributeValue().withS(price.toString())
+        val query = DynamoDBScanExpression()
+                .withIndexName("price_idx")
+                .withFilterExpression("price > :v1 and category = :v2")
+                .withExpressionAttributeValues(args)
+        return mapper.scan(DynamoBook::class.java, query)
+    }
 }
