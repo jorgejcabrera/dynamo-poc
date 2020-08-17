@@ -11,6 +11,10 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
         return mapper.scan(DynamoBook::class.java, query)
     }
 
+    override fun save(book: Book) {
+        mapper.save(book)
+    }
+
     override fun findAllByCreatedDateBetween(): List<Book> {
         TODO("Not yet implemented")
     }

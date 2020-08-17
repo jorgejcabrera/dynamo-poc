@@ -14,10 +14,6 @@ class DynamoDataSourceConfiguration(private val dynamoDBMapper: DynamoDBMapper,
         createBookTable()
     }
 
-    fun addBook(book: DynamoBook) {
-        dynamoDBMapper.save(book)
-    }
-
     private fun createBookTable() {
         try {
             val tableRequest = dynamoDBMapper

@@ -8,6 +8,10 @@ class MySqlBookRepository(private val jpaBookRepository: JpaBookRepository) : Bo
         return jpaBookRepository.findAll()
     }
 
+    override fun save(book: Book) {
+        jpaBookRepository.save(book as MySqlBook)
+    }
+
     override fun findAllByCreatedDateBetween(): List<Book> {
         TODO("Not yet implemented")
     }
