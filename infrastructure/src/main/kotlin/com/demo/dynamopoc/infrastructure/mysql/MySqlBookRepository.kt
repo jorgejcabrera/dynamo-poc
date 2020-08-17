@@ -2,6 +2,7 @@ package com.demo.dynamopoc.infrastructure.mysql
 
 import com.demo.dynamopoc.core.book.Book
 import com.demo.dynamopoc.core.book.BookRepository
+import java.util.*
 
 class MySqlBookRepository(private val jpaBookRepository: JpaBookRepository) : BookRepository {
     override fun findAll(): List<Book> {
@@ -12,7 +13,7 @@ class MySqlBookRepository(private val jpaBookRepository: JpaBookRepository) : Bo
         jpaBookRepository.save(book as MySqlBook)
     }
 
-    override fun findAllByCreatedDateBetween(): List<Book> {
+    override fun findAllByCreatedDateBeforeAt(date: Date): List<Book> {
         TODO("Not yet implemented")
     }
 }

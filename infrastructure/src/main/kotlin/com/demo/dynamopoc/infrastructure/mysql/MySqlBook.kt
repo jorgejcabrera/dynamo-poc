@@ -22,18 +22,18 @@ class MySqlBook : Book {
     override var createdDate: Date? = null
 
     @Column(name = "price")
-    override var price: Double = 0.0
+    override var price: Double? = null
 
     @Column(name = "rating")
-    override var rating: Int = 0
+    override var rating: Int? = null
 
     constructor()
     constructor(
             title: String,
             category: Category?,
             createdDate: Date?,
-            price: Double,
-            rating: Int
+            price: Double?,
+            rating: Int?
     ) {
         this.title = title
         this.category = category

@@ -6,6 +6,6 @@ interface Book {
     var title: String
     var category: Category?
     var createdDate: Date?
-    var price: Double
-    var rating: Int
+    var price: Double?
+    var rating: Int?
 }

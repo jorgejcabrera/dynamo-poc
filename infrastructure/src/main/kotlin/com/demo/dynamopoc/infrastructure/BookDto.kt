@@ -10,8 +10,8 @@ class BookDto(
         override var title: String,
         override var category: Category?,
         override var createdDate: Date?,
-        override var price: Double,
-        override var rating: Int
+        override var price: Double?,
+        override var rating: Int?
 ) : Book {
 
     fun toDynamoBook(): DynamoBook {

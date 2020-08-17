@@ -13,7 +13,7 @@ class BookFactoryAdapter : BookFactory {
         val title = UUID.randomUUID().toString()
         val price = Random.nextDouble()
         val rating = Random.nextInt(0, 5)
-        val createdDate = LocalDateTime().minusDays(Random.nextInt(0 - 600))
+        val createdDate = LocalDateTime().minusDays(Random.nextInt(0, 600))
         return BookDto(
                 category = category,
                 title = title,
