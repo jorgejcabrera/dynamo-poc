@@ -10,11 +10,11 @@ class RetrieveDBMeasures(
 ) {
 
     fun execute(): Report {
+        var report = Report(mutableMapOf(), mutableMapOf())
         val noSqlScanQueryTime = measureTimeMillis { noSqlBookRepository.findAll() }
         val sqlScanQueryTime = measureTimeMillis { sqlBookRepository.findAll() }
-        return Report(
-                sqlScanQueryTime = sqlScanQueryTime,
-                noSqlScanQueryTime = noSqlScanQueryTime
-        )
+        report.dynamoMeasures["scan_query_time"] = noSqlScanQueryTime
+        report.mySqlMeasures["scan_query_time"] = sqlScanQueryTime
+        return report
     }
 }
