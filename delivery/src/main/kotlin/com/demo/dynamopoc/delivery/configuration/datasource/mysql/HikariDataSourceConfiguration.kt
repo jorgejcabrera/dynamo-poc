@@ -1,5 +1,6 @@
 package com.demo.dynamopoc.delivery.configuration.datasource.mysql
 
+import com.demo.dynamopoc.infrastructure.mysql.JpaBookRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
 import org.springframework.boot.jdbc.DataSourceBuilder
@@ -9,7 +10,7 @@ import org.springframework.context.annotation.Import
 import javax.sql.DataSource
 
 @Configuration
-@Import(DataSourceConfiguration::class)
+@Import(MySqlConfiguration::class)
 open class HikariDataSourceConfiguration {
 
     @Bean
@@ -21,5 +22,10 @@ open class HikariDataSourceConfiguration {
         dataSourceBuilder.username(properties.username)
         dataSourceBuilder.password(properties.password)
         return dataSourceBuilder.build()
+    }
+
+    @Bean(initMethod = "initialize")
+    fun mySqlSchemaInitializer(jpaBookRepository: JpaBookRepository): MySqlSchemaInitializer {
+        return MySqlSchemaInitializer(jpaBookRepository)
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Primary
 
 @Primary
 @Configuration
-open class DataSourceConfiguration : DataSourceProperties() {
+open class MySqlConfiguration : DataSourceProperties() {
 
     @Value("\${secret.mysql_usr}")
     private val mySqlUsr: String? = null

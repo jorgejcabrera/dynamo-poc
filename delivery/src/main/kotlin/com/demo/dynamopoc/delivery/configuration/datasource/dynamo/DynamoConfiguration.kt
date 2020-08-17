@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration
 
 
 @Configuration
-class DynamoDBConfig {
+class DynamoConfiguration {
 
     @Value("\${amazon.end-point.url}")
     private val dBEndpoint: String? = null

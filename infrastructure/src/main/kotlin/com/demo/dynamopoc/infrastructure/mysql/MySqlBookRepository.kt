@@ -1,9 +1,14 @@
 package com.demo.dynamopoc.infrastructure.mysql
 
-import org.springframework.data.repository.CrudRepository
-import org.springframework.stereotype.Repository
+import com.demo.dynamopoc.core.book.Book
+import com.demo.dynamopoc.core.book.BookRepository
 
-@Repository
-interface MySqlBookRepository : CrudRepository<MySqlBook, MySqlBookId> {
+class MySqlBookRepository(private val jpaBookRepository: JpaBookRepository) : BookRepository {
+    override fun findAll(): List<Book> {
+        return jpaBookRepository.findAll()
+    }
 
+    override fun findAllByCreatedDateBetween(): List<Book> {
+        TODO("Not yet implemented")
+    }
 }

@@ -18,7 +18,7 @@ class DynamoSchemaInitializer(private val dynamoDBMapper: DynamoDBMapper,
 
     private fun initializeWithSomeBooks() {
         val factory = DynamoBookFactory()
-        repeat(10) {
+        repeat(10000) {
             dynamoDBMapper.save(factory.randomBook())
             LOGGER.debug("Creating a new dynamo book...")
         }
