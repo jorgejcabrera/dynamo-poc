@@ -19,6 +19,7 @@ class DynamoDataSourceConfiguration(private val dynamoDBMapper: DynamoDBMapper,
             val tableRequest = dynamoDBMapper
                     .generateCreateTableRequest(DynamoBook::class.java)
                     .withProvisionedThroughput(ProvisionedThroughput(40000, 40000))
+            tableRequest.globalSecondaryIndexes[0].provisionedThroughput = ProvisionedThroughput(40000, 40000)
             DynamoDB(amazonDynamoDB)
                     .createTable(tableRequest)
                     .waitForActive()

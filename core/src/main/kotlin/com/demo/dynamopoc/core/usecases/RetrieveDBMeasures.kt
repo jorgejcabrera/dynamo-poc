@@ -21,8 +21,13 @@ class RetrieveDBMeasures(
 
         val noSqlQueryTimeByDate = measureTimeMillis { noSqlBookRepository.findAllByCreatedDateBefore(Date()) }
         val sqlQueryTimeByDate = measureTimeMillis { sqlBookRepository.findAllByCreatedDateBefore(Date()) }
-        report.dynamoMeasures["date_query_time"] = noSqlQueryTimeByDate
-        report.mySqlMeasures["date_query_time"] = sqlQueryTimeByDate
+        report.dynamoMeasures["query_time_by_date"] = noSqlQueryTimeByDate
+        report.mySqlMeasures["query_time_by_date"] = sqlQueryTimeByDate
+
+        val noSqlQueryTimeByPrice = measureTimeMillis { noSqlBookRepository.findAllByPriceGreaterThan(10.0) }
+        val sqlQueryTimeByPrice = measureTimeMillis { sqlBookRepository.findAllByPriceGreaterThan(10.0) }
+        report.dynamoMeasures["query_time_by_price"] = noSqlQueryTimeByPrice
+        report.mySqlMeasures["query_time_by_price"] = sqlQueryTimeByPrice
         return report
     }
 

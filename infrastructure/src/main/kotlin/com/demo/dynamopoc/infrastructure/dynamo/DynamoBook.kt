@@ -24,6 +24,7 @@ class DynamoBook : Book {
     override var createdDate: Date?
 
     @get:DynamoDBAttribute(attributeName = "price")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = "price_idx")
     override var price: Double?
 
     @get:DynamoDBAttribute(attributeName = "rating")

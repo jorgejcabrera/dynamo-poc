@@ -36,6 +36,11 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
     }
 
     override fun findAllByPriceGreaterThan(price: Double): List<Book> {
-        TODO("Not yet implemented")
-    }
+        val mapped = AttributeValue().withN(price.toString())
+        val args = Collections.singletonMap(":v1", mapped)
+        val query = DynamoDBScanExpression()
+                .withIndexName("price_idx")
+                .withFilterExpression("price > :v1")
+                .withExpressionAttributeValues(args)
+        return mapper.scan(DynamoBook::class.java, query)    }
 }
