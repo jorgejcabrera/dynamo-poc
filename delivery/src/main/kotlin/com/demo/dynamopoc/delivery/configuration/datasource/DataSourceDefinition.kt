@@ -7,6 +7,7 @@ import com.demo.dynamopoc.delivery.configuration.datasource.dynamo.DynamoDataSou
 import com.demo.dynamopoc.infrastructure.dynamo.DynamoBookRepository
 import com.demo.dynamopoc.infrastructure.mysql.JpaBookRepository
 import com.demo.dynamopoc.infrastructure.mysql.MySqlBookRepository
+import org.flywaydb.core.Flyway
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 

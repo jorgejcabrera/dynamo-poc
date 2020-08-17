@@ -35,6 +35,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("mysql:mysql-connector-java")
 
+    // FlyWay
+    implementation("org.flywaydb:flyway-core:5.0.7")
+
+
     // Spring test
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
