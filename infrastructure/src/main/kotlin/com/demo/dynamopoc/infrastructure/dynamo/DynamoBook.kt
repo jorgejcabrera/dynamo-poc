@@ -39,15 +39,15 @@ class DynamoBook : Book {
 
     constructor(
             title: String,
-            group: Category,
-            createdDate: Date,
+            category: Category?,
+            createdDate: Date?,
             price: Double,
             rating: Int
     ) {
         this.title = title
         this.price = price
         this.rating = rating
-        this.category = group
+        this.category = category
         this.createdDate = createdDate
     }
 }

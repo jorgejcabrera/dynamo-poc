@@ -7,6 +7,7 @@ import com.amazonaws.client.builder.AwsClientBuilder
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
+import com.demo.dynamopoc.core.book.BookFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -51,11 +52,15 @@ class DynamoConfiguration {
                 .build()
     }
 
-    @Bean(initMethod = "createSchema")
+    @Bean
     fun dynamoSchemaInitializer(
             dynamoDBMapper: DynamoDBMapper,
-            amazonDynamoDB: AmazonDynamoDB
-    ): DynamoSchemaInitializer {
-        return DynamoSchemaInitializer(dynamoDBMapper, amazonDynamoDB)
+            amazonDynamoDB: AmazonDynamoDB,
+            bookFactory: BookFactory
+    ): DynamoDataSourceConfiguration {
+        return DynamoDataSourceConfiguration(
+                dynamoDBMapper,
+                amazonDynamoDB
+        )
     }
 }

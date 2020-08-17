@@ -28,9 +28,15 @@ class MySqlBook : Book {
     override var rating: Int = 0
 
     constructor()
-    constructor(title: String, group: Category?, createdDate: Date?, price: Double, rating: Int) {
+    constructor(
+            title: String,
+            category: Category?,
+            createdDate: Date?,
+            price: Double,
+            rating: Int
+    ) {
         this.title = title
-        this.category = group
+        this.category = category
         this.createdDate = createdDate
         this.price = price
         this.rating = rating

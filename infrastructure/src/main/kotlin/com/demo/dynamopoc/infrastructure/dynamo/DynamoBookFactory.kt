@@ -13,7 +13,7 @@ class DynamoBookFactory : BookFactory {
         val price = Random.nextDouble()
         val rating = Random.nextInt(0, 5)
         return DynamoBook(
-                group = group,
+                category = group,
                 title = title,
                 price = price,
                 rating = rating,

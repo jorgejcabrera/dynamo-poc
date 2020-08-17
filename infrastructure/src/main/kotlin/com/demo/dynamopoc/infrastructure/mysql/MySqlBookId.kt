@@ -5,5 +5,5 @@ import java.io.Serializable
 
 class MySqlBookId : Serializable {
     var title: String = ""
-    var group: Category? = null
+    var category: Category? = null
 }
