@@ -11,7 +11,7 @@ It's a simple project to try some DynamoDB key features and take performance mea
 }
 ```
 With this pattern, a book collection was created and saved in a local Dynamo and local MySql.
-The main purposes are analyzing the latency's changes depending on items saved in DB, and measuring the performance of Dynamo's gsi and lsi.
+The main purposes are analyzing the latency's changes depending on items amount saved, and measuring the performance of Dynamo's gsi and lsi.
 
 You can change the items' quantity stored in the Dynamo by updating parameter AAAAAA in the docker-compose.
 ## Requirements
