@@ -33,7 +33,6 @@ tasks.withType<KotlinCompile> {
 
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "jacoco")
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {

@@ -36,9 +36,7 @@ dependencies {
     implementation("com.github.derjust:spring-data-dynamodb:5.1.0")
 
     // MySql
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa") {
-        exclude(group = "javax.persistence")
-    }
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("mysql:mysql-connector-java")
 
     // FlyWay

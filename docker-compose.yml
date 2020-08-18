@@ -24,14 +24,14 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: admin
 
-  #app:
-  #  container_name: dynamo-poc
-  #  build:
-  #    context: .
-  #    dockerfile: Dockerfile
-  #  ports:
-  #    - '8080:8080'
-  #  depends_on:
-  #    - dynamodb
-  #    - mysqldb
-  #  restart: always
+  app:
+    container_name: dynamo-poc
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      - dynamodb
+      - mysqldb
+    restart: always

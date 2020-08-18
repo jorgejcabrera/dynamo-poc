@@ -19,7 +19,7 @@ dependencies {
     implementation("com.github.derjust:spring-data-dynamodb:5.1.0")
 
     // MySql
-    implementation("javax.persistence:persistence-api:1.0")
+    implementation("jakarta.persistence:jakarta.persistence-api:2.2.3")
     runtimeOnly("mysql:mysql-connector-java")
 }
 
