@@ -10,7 +10,7 @@ It's a simple project to try some DynamoDB key features and take performance mea
     created_date: Date    
 }
 ```
-After that, a book collection was created and saved in a local Dynamo and MySql.
+After that, a book collection was created and saved in a local Dynamo and local MySql.
 
 ## Requirements
 - Kotlin
@@ -27,7 +27,7 @@ and then
  ```bash
 $ docker-compose up -d
  ```
-The API will listen on `localhost:8000`.
+The API will listen on `localhost:8080`.
 
 ## Examples
 ```bash

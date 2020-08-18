@@ -23,17 +23,22 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(project(":core"))
     implementation(project(":infrastructure"))
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
     implementation(kotlin("stdlib-jdk8"))
+
+    // Spring
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // Json
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
 
     // DynamoDB
     implementation("com.github.derjust:spring-data-dynamodb:5.1.0")
 
     // MySql
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("javax.persistence:persistence-api:1.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa") {
+        exclude(group = "javax.persistence")
+    }
     runtimeOnly("mysql:mysql-connector-java")
 
     // FlyWay

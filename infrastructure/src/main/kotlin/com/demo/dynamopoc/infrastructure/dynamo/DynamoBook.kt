@@ -8,7 +8,7 @@ import java.util.*
 @DynamoDBTable(tableName = "Book")
 class DynamoBook : Book {
     // Partition key
-    @get:DynamoDBHashKey(attributeName = "group")
+    @get:DynamoDBHashKey(attributeName = "category")
     @DynamoDBTypeConvertedEnum
     override var category: Category?
 

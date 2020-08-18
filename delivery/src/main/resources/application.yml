@@ -3,7 +3,7 @@ environment: local
 amazon:
   region: eu-east-1
   end-point:
-    url: http://dynamodb:8000/
+    url: http://localhost:8000/
 
 spring:
   application:
@@ -11,7 +11,7 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
   datasource:
-    url: jdbc:mysql://mysqldb:3306/dynamo_poc?allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/dynamo_poc?allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useSSL=false
   jpa:
     properties:
       hibernate:
