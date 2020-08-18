@@ -33,11 +33,11 @@ dependencies {
 
     // MySql
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("javax.persistence:persistence-api:1.0")
     runtimeOnly("mysql:mysql-connector-java")
 
     // FlyWay
     implementation("org.flywaydb:flyway-core:5.0.7")
-
 
     // Spring test
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -50,7 +50,7 @@ tasks.withType<Test> {
 }
 
 application {
-    mainClassName = "com.demo.dynamopoc.delivery.DynamoPocApplicationKt"
+    mainClassName = "com.demo.dynamopoc.DynamoPocApplicationKt"
 }
 
 tasks {
