@@ -13,10 +13,7 @@ It's a simple project to try some DynamoDB key features and take performance mea
 After that, a book collection was created and saved in a local Dynamo and local MySql.
 
 ## Requirements
-- Kotlin
-- Docker
-- MySql
-- Dynamo
+You only need Docker :)
 
 ## Installation
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Docker](https://www.docker.com/get-started) installed on your computer. From your command line:
@@ -24,8 +21,8 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [D
 $ docker-compose build 
  ```
 and then
- ```bash
-$ docker-compose up -d
+ ```
+$ docker-compose up
  ```
 The API will listen on `localhost:8080`.
 
