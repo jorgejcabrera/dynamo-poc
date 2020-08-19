@@ -30,6 +30,10 @@ class MySqlBookRepository(private val jpaBookRepository: JpaBookRepository) : Bo
         return jpaBookRepository.findAllByRatingGreaterThan(rating)
     }
 
+    override fun findAllByCategoryAndCreatedDateAfter(category: Category, date: Date): List<Book> {
+        return jpaBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)
+    }
+
     override fun findAllByCategoryAndPriceGreaterThan(category: Category, price: Double): List<Book> {
         return jpaBookRepository.findAllByCategoryAndPriceGreaterThan(category, price)
     }
