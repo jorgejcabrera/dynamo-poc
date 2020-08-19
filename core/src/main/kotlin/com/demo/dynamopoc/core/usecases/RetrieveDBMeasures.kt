@@ -11,6 +11,7 @@ class RetrieveDBMeasures(private val dbMeasureService: DBMeasureService) {
         report.measures.add(dbMeasureService.queryByDate())
         report.measures.add(dbMeasureService.queryByPrice())
         report.measures.add(dbMeasureService.queryByCategoryAndPrice())
+        report.measures.add(dbMeasureService.queryByCategory())
         return report
     }
 }

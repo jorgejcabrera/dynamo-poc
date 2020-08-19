@@ -14,6 +14,10 @@ class MySqlBookRepository(private val jpaBookRepository: JpaBookRepository) : Bo
         jpaBookRepository.save(book as MySqlBook)
     }
 
+    override fun findAllByCategory(category: Category): List<Book> {
+        return jpaBookRepository.findAllByCategory(category)
+    }
+
     override fun findAllByCreatedDateBefore(date: Date): List<Book> {
         return jpaBookRepository.findAllByCreatedDateBefore(date)
     }

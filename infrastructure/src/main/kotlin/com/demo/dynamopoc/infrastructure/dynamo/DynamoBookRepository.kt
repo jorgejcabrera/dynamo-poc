@@ -1,7 +1,9 @@
 package com.demo.dynamopoc.infrastructure.dynamo
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression
+import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec
 import com.amazonaws.services.dynamodbv2.model.AttributeValue
 import com.demo.dynamopoc.core.book.Book
 import com.demo.dynamopoc.core.book.BookRepository
@@ -24,6 +26,15 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
 
     override fun save(book: Book) {
         mapper.save(book)
+    }
+
+    override fun findAllByCategory(category: Category): List<Book> {
+        val eav = mutableMapOf<String, AttributeValue>()
+        eav[":val1"] = AttributeValue().withS(category.toString())
+        val q = DynamoDBQueryExpression<Book>()
+                .withKeyConditionExpression("category = :val1")
+                .withExpressionAttributeValues(eav)
+        return mapper.query(Book::class.java, q)
     }
 
     override fun findAllByCreatedDateBefore(date: Date): List<Book> {

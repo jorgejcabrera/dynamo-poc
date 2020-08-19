@@ -60,6 +60,21 @@ class DBMeasureServiceAdapter(
         )
     }
 
+    override fun queryByCategory(): DBMeasure {
+        val category = randomCategory()
+        val noSqlQueryTime = measureTimeMillis {
+            noSqlBookRepository.findAllByCategory(category)
+        }
+        val sqlQueryTime = measureTimeMillis {
+            sqlBookRepository.findAllByCategory(category)
+        }
+        return DBMeasure(
+                description = "query_time_by_category",
+                noSqlQueryTime = noSqlQueryTime,
+                sqlQueryTime = sqlQueryTime
+        )
+    }
+
     private fun randomPrice(): Double {
         return Random.nextDouble()
     }

@@ -9,6 +9,7 @@ import java.util.*
 interface JpaBookRepository : CrudRepository<MySqlBook, MySqlBookId> {
     override fun findAll(): List<MySqlBook>
     fun findAllByCreatedDateBefore(date: Date): List<MySqlBook>
+    fun findAllByCategory(category: Category): List<MySqlBook>
     fun findAllByPriceGreaterThan(price: Double): List<MySqlBook>
     fun findAllByCategoryAndPriceGreaterThan(category: Category, price: Double): List<MySqlBook>
 }
