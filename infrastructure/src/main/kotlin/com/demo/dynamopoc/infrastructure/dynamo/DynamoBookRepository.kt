@@ -3,7 +3,6 @@ package com.demo.dynamopoc.infrastructure.dynamo
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression
-import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec
 import com.amazonaws.services.dynamodbv2.model.AttributeValue
 import com.demo.dynamopoc.core.book.Book
 import com.demo.dynamopoc.core.book.BookRepository
@@ -31,10 +30,10 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
     override fun findAllByCategory(category: Category): List<Book> {
         val eav = mutableMapOf<String, AttributeValue>()
         eav[":val1"] = AttributeValue().withS(category.toString())
-        val q = DynamoDBQueryExpression<Book>()
+        val q = DynamoDBQueryExpression<DynamoBook>()
                 .withKeyConditionExpression("category = :val1")
                 .withExpressionAttributeValues(eav)
-        return mapper.query(Book::class.java, q)
+        return mapper.query(DynamoBook::class.java, q)
     }
 
     override fun findAllByCreatedDateBefore(date: Date): List<Book> {
@@ -63,26 +62,26 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
         val query = DynamoDBScanExpression()
                 .withFilterExpression("rating > :v1")
                 .withExpressionAttributeValues(args)
-        return mapper.scan(DynamoBook::class.java, query)    }
+        return mapper.scan(DynamoBook::class.java, query)
+    }
 
     override fun findAllByCategoryAndCreatedDateAfter(category: Category, date: Date): List<Book> {
-        val args = mutableMapOf<String, AttributeValue>()
-        args[":v1"] = AttributeValue().withS(date.toString())
-        args[":v2"] = AttributeValue().withS(category.toString())
+        val eav = mutableMapOf<String, AttributeValue>()
+        eav[":v1"] = AttributeValue().withS(dateFormatter.format(date))
+        eav[":v2"] = AttributeValue().withS(category.toString())
         val query = DynamoDBScanExpression()
-                .withIndexName("created_date_idx")
                 .withFilterExpression("created_date > :v1 and category = :v2")
-                .withExpressionAttributeValues(args)
-        return mapper.scan(DynamoBook::class.java, query)    }
+                .withExpressionAttributeValues(eav)
+        return mapper.scan(DynamoBook::class.java, query)
+    }
 
     override fun findAllByCategoryAndPriceGreaterThan(category: Category, price: Double): List<Book> {
-        val args = mutableMapOf<String, AttributeValue>()
-        args[":v1"] = AttributeValue().withN(price.toString())
-        args[":v2"] = AttributeValue().withS(price.toString())
+        val eav = mutableMapOf<String, AttributeValue>()
+        eav[":v1"] = AttributeValue().withN(price.toString())
+        eav[":v2"] = AttributeValue().withS(category.toString())
         val query = DynamoDBScanExpression()
-                .withIndexName("price_idx")
                 .withFilterExpression("price > :v1 and category = :v2")
-                .withExpressionAttributeValues(args)
+                .withExpressionAttributeValues(eav)
         return mapper.scan(DynamoBook::class.java, query)
     }
 }
