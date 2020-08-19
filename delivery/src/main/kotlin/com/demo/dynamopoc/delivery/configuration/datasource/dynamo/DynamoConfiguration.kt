@@ -22,8 +22,6 @@ class DynamoConfiguration {
     @Value("\${amazon.region}")
     private val amazonDynamoDBRegion: String? = null
 
-    @Value("\${environment}")
-    private lateinit var env: String
 
     @Value("\${secret.aws_key}")
     private lateinit var amazonAWSAccessKey: String

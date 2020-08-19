@@ -10,7 +10,8 @@ class DataSourceInitializer(
         private val dynamoDataSourceConfiguration: DynamoDataSourceConfiguration,
         private val bookFactory: BookFactory,
         private val noSqlBookRepository: BookRepository,
-        private val sqlBookRepository: BookRepository
+        private val sqlBookRepository: BookRepository,
+        private val itemsAmount: Int
 ) {
 
     fun execute() {
@@ -19,7 +20,7 @@ class DataSourceInitializer(
     }
 
     private fun createAndSaveSomeBooks() {
-        repeat(10) {
+        repeat(itemsAmount) {
             val book = bookFactory.randomBook() as BookDto
             noSqlBookRepository.save(book.toDynamoBook())
             sqlBookRepository.save(book.toMySqlBook())

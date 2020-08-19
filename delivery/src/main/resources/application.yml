@@ -1,5 +1,7 @@
 environment: local
 
+items_amount: ${ITEMS_AMOUNT}
+
 amazon:
   region: eu-east-1
   end-point:

@@ -8,6 +8,7 @@ import com.demo.dynamopoc.infrastructure.dynamo.DynamoBookRepository
 import com.demo.dynamopoc.infrastructure.mysql.JpaBookRepository
 import com.demo.dynamopoc.infrastructure.mysql.MySqlBookRepository
 import org.flywaydb.core.Flyway
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -15,6 +16,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @Configuration
 class DataSourceDefinition {
+
+    @Value("\${items_amount}")
+    private var itemsAmount: Int = 0
 
     @Bean
     fun sqlBookRepository(jpaBookRepository: JpaBookRepository): BookRepository {
@@ -37,7 +41,8 @@ class DataSourceDefinition {
                 dynamoDataSourceConfiguration,
                 bookFactory,
                 noSqlBookRepository,
-                sqlBookRepository
+                sqlBookRepository,
+                itemsAmount
         )
     }
 }
