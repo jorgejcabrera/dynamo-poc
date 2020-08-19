@@ -9,4 +9,6 @@ interface BookRepository {
     fun save(book: Book)
     fun findAllByCategory(category: Category): List<Book>
     fun findAllByPriceGreaterThan(price: Double): List<Book>
+    fun findAllByRatingGraterThan(rating: Int): List<Book>
+    fun findAllByCategoryAndCreatedDateAfter(category: Category, date: Date): List<Book>
 }

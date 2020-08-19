@@ -26,6 +26,10 @@ class MySqlBookRepository(private val jpaBookRepository: JpaBookRepository) : Bo
         return jpaBookRepository.findAllByPriceGreaterThan(price)
     }
 
+    override fun findAllByRatingGraterThan(rating: Int): List<Book> {
+        return jpaBookRepository.findAllByRatingGreaterThan(rating)
+    }
+
     override fun findAllByCategoryAndPriceGreaterThan(category: Category, price: Double): List<Book> {
         return jpaBookRepository.findAllByCategoryAndPriceGreaterThan(category, price)
     }

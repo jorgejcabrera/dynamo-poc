@@ -6,4 +6,6 @@ interface DBMeasureService {
     fun queryByPrice(): DBMeasure
     fun queryByCategoryAndPrice(): DBMeasure
     fun queryByCategory(): DBMeasure
+    fun queryByRating(): DBMeasure
+    fun queryByCategoryAndCreatedDate(): DBMeasure
 }

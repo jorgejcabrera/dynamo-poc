@@ -75,12 +75,46 @@ class DBMeasureServiceAdapter(
         )
     }
 
+    override fun queryByRating(): DBMeasure {
+        val rating = randomRating()
+        val noSqlQueryTime = measureTimeMillis {
+            noSqlBookRepository.findAllByRatingGraterThan(rating)
+        }
+        val sqlQueryTime = measureTimeMillis {
+            sqlBookRepository.findAllByRatingGraterThan(rating)
+        }
+        return DBMeasure(
+                description = "query_time_by_rating",
+                noSqlQueryTime = noSqlQueryTime,
+                sqlQueryTime = sqlQueryTime
+        )
+    }
+
+    override fun queryByCategoryAndCreatedDate(): DBMeasure {
+        val category = randomCategory()
+        val date = randomDate()
+        val noSqlQueryTime = measureTimeMillis {
+            noSqlBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)
+        }
+        val sqlQueryTime = measureTimeMillis {
+            sqlBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)
+        }
+        return DBMeasure(
+                description = "query_time_by_category_and_created_date",
+                noSqlQueryTime = noSqlQueryTime,
+                sqlQueryTime = sqlQueryTime
+        )    }
+
     private fun randomPrice(): Double {
         return Random.nextDouble()
     }
 
     private fun randomCategory(): Category {
         return Category.values().random()
+    }
+
+    private fun randomRating(): Int {
+        return Random.nextInt(0, 5)
     }
 
     private fun randomDate(): Date {

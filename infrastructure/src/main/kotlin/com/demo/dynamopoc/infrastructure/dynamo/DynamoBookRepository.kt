@@ -57,6 +57,24 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
         return mapper.scan(DynamoBook::class.java, query)
     }
 
+    override fun findAllByRatingGraterThan(rating: Int): List<Book> {
+        val mapped = AttributeValue().withN(rating.toString())
+        val args = Collections.singletonMap(":v1", mapped)
+        val query = DynamoDBScanExpression()
+                .withFilterExpression("rating > :v1")
+                .withExpressionAttributeValues(args)
+        return mapper.scan(DynamoBook::class.java, query)    }
+
+    override fun findAllByCategoryAndCreatedDateAfter(category: Category, date: Date): List<Book> {
+        val args = mutableMapOf<String, AttributeValue>()
+        args[":v1"] = AttributeValue().withS(date.toString())
+        args[":v2"] = AttributeValue().withS(category.toString())
+        val query = DynamoDBScanExpression()
+                .withIndexName("created_date_idx")
+                .withFilterExpression("created_date > :v1 and category = :v2")
+                .withExpressionAttributeValues(args)
+        return mapper.scan(DynamoBook::class.java, query)    }
+
     override fun findAllByCategoryAndPriceGreaterThan(category: Category, price: Double): List<Book> {
         val args = mutableMapOf<String, AttributeValue>()
         args[":v1"] = AttributeValue().withN(price.toString())
