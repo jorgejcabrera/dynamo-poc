@@ -27,7 +27,7 @@ services:
   app:
     container_name: dynamo-poc
     environment:
-      ITEMS_AMOUNT: 10000
+      ITEMS_AMOUNT: 25000
     build:
       context: .
       dockerfile: Dockerfile
