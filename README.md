@@ -1,7 +1,7 @@
 # Dynamo-POC
 
 It's a simple project to try some DynamoDB key features and take performance measurement. Therefore, I have created a Book entity that looks like this:
-```json
+```
 {
     title: String,
     category: String,
@@ -14,7 +14,18 @@ With this pattern, a book collection was created and saved in a local Dynamo and
 The main purposes are analyzing the latency's changes depending on items amount saved, and measuring the performance of Dynamo's gsi and lsi.
 
 You can change the items' quantity stored in the Dynamo by updating parameter ITEMS_AMOUNT in the docker-compose.
+```dockerfile
+  app:
+    container_name: dynamo-poc
+    environment:
+      ITEMS_AMOUNT: 10000
+```
 
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
 ## Requirements
 You only need Docker :+1:
 
