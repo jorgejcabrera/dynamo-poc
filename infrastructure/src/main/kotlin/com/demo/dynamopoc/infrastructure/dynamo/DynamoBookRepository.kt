@@ -56,7 +56,7 @@ class DynamoBookRepository(private val mapper: DynamoDBMapper) : BookRepository 
         return mapper.scan(DynamoBook::class.java, query)
     }
 
-    override fun findAllByRatingGraterThan(rating: Int): List<Book> {
+    override fun findAllByRatingGreaterThan(rating: Int): List<Book> {
         val mapped = AttributeValue().withN(rating.toString())
         val args = Collections.singletonMap(":v1", mapped)
         val query = DynamoDBScanExpression()

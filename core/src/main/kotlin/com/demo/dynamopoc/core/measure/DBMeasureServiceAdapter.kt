@@ -78,10 +78,10 @@ class DBMeasureServiceAdapter(
     override fun queryByRating(): DBMeasure {
         val rating = randomRating()
         val noSqlQueryTime = measureTimeMillis {
-            noSqlBookRepository.findAllByRatingGraterThan(rating)
+            noSqlBookRepository.findAllByRatingGreaterThan(rating)
         }
         val sqlQueryTime = measureTimeMillis {
-            sqlBookRepository.findAllByRatingGraterThan(rating)
+            sqlBookRepository.findAllByRatingGreaterThan(rating)
         }
         return DBMeasure(
                 description = "query_time_by_rating",
