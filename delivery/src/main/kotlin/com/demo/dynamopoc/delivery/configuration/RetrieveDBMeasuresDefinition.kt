@@ -4,6 +4,7 @@ import com.demo.dynamopoc.core.book.BookRepository
 import com.demo.dynamopoc.core.measure.DBMeasureService
 import com.demo.dynamopoc.core.measure.DBMeasureServiceAdapter
 import com.demo.dynamopoc.core.usecases.RetrieveDBMeasures
+import com.demo.dynamopoc.core.usecases.RetrieveDBMeasuresUseCase
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -19,7 +20,7 @@ class RetrieveDBMeasuresDefinition {
     }
 
     @Bean
-    fun retrieveDBMeasures(dbMeasureService: DBMeasureService): RetrieveDBMeasures {
+    fun retrieveDBMeasuresUseCase(dbMeasureService: DBMeasureService): RetrieveDBMeasuresUseCase {
         return RetrieveDBMeasures(dbMeasureService)
     }
 }

@@ -3,9 +3,9 @@ package com.demo.dynamopoc.core.usecases
 import com.demo.dynamopoc.core.measure.DBMeasureService
 import com.demo.dynamopoc.core.report.Report
 
-class RetrieveDBMeasures(private val dbMeasureService: DBMeasureService) {
+class RetrieveDBMeasures(private val dbMeasureService: DBMeasureService) : RetrieveDBMeasuresUseCase {
 
-    fun execute(): Report {
+    override fun execute(): Report {
         return Report.Builder()
                 .addMeasure(dbMeasureService.queryByCategoryAndCreatedDate())
                 .addMeasure(dbMeasureService.queryScan())
