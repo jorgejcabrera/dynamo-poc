@@ -34,7 +34,7 @@ class DBMeasureServiceAdapterTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         dbMeasuresService = DBMeasureServiceAdapter(noSqlBookRepository, sqlBookRepository)
-        
+
         whenever(noSqlBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)).thenReturn(books)
         whenever(sqlBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)).thenReturn(books)
         whenever(noSqlBookRepository.findAllByRatingGreaterThan(rating)).thenReturn(books)

@@ -28,6 +28,7 @@ class DynamoBook : Book {
     override var price: Double?
 
     @get:DynamoDBAttribute(attributeName = "rating")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = "price_idx")
     override var rating: Int?
 
     constructor() {
