@@ -6,14 +6,14 @@ import com.demo.dynamopoc.core.report.Report
 class RetrieveDBMeasures(private val dbMeasureService: DBMeasureService) {
 
     fun execute(): Report {
-        val report = Report(mutableListOf())
-        report.measures.add(dbMeasureService.queryByCategoryAndCreatedDate())
-        report.measures.add(dbMeasureService.queryScan())
-        report.measures.add(dbMeasureService.queryByDate())
-        report.measures.add(dbMeasureService.queryByPrice())
-        report.measures.add(dbMeasureService.queryByCategoryAndPrice())
-        report.measures.add(dbMeasureService.queryByCategory())
-        report.measures.add(dbMeasureService.queryByRating())
-        return report
+        return Report.Builder()
+                .addMeasure(dbMeasureService.queryByCategoryAndCreatedDate())
+                .addMeasure(dbMeasureService.queryScan())
+                .addMeasure(dbMeasureService.queryByDate())
+                .addMeasure(dbMeasureService.queryByPrice())
+                .addMeasure(dbMeasureService.queryByCategoryAndPrice())
+                .addMeasure(dbMeasureService.queryByCategory())
+                .addMeasure(dbMeasureService.queryByRating())
+                .build()
     }
 }
