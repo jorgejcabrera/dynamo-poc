@@ -34,13 +34,25 @@ class DBMeasureServiceAdapterTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         dbMeasuresService = DBMeasureServiceAdapter(noSqlBookRepository, sqlBookRepository)
+        
+        whenever(noSqlBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)).thenReturn(books)
+        whenever(sqlBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)).thenReturn(books)
+        whenever(noSqlBookRepository.findAllByRatingGreaterThan(rating)).thenReturn(books)
+        whenever(sqlBookRepository.findAllByRatingGreaterThan(rating)).thenReturn(books)
+        whenever(noSqlBookRepository.findAllByPriceGreaterThan(price)).thenReturn(books)
+        whenever(sqlBookRepository.findAllByPriceGreaterThan(price)).thenReturn(books)
+        whenever(noSqlBookRepository.findAll()).thenReturn(books)
+        whenever(sqlBookRepository.findAll()).thenReturn(books)
+        whenever(noSqlBookRepository.findAllByCreatedDateBefore(date)).thenReturn(books)
+        whenever(sqlBookRepository.findAllByCreatedDateBefore(date)).thenReturn(books)
+        whenever(noSqlBookRepository.findAllByCategory(category)).thenReturn(books)
+        whenever(sqlBookRepository.findAllByCategory(category)).thenReturn(books)
+        whenever(noSqlBookRepository.findAllByCategoryAndPriceGreaterThan(category, price)).thenReturn(books)
+        whenever(sqlBookRepository.findAllByCategoryAndPriceGreaterThan(category, price)).thenReturn(books)
     }
 
     @Test
     fun `when execute a query scan then should return a db measure`() {
-        // given
-        givenAQueryScanReport()
-
         // when
         val dbMeasure = dbMeasuresService.queryScan()
 
@@ -52,9 +64,6 @@ class DBMeasureServiceAdapterTest {
 
     @Test
     fun `when execute a query by date then should return a db measure`() {
-        // given
-        givenAQueryByDate()
-
         // when
         val dbMeasure = dbMeasuresService.queryByDate()
 
@@ -65,9 +74,6 @@ class DBMeasureServiceAdapterTest {
 
     @Test
     fun `when execute a query by price then should return a db measure`() {
-        // given
-        givenAQueryByPrice()
-
         // when
         val dbMeasure = dbMeasuresService.queryByPrice()
 
@@ -78,9 +84,6 @@ class DBMeasureServiceAdapterTest {
 
     @Test
     fun `when execute a query by price and category then should return a db measure`() {
-        // given
-        givenAQueryByCategoryAndPrice()
-
         // when
         val dbMeasure = dbMeasuresService.queryByCategoryAndPrice()
 
@@ -91,9 +94,6 @@ class DBMeasureServiceAdapterTest {
 
     @Test
     fun `when execute a query by category then should return a db measure`() {
-        // given
-        givenAQueryByCategory()
-
         // when
         val dbMeasure = dbMeasuresService.queryByCategory()
 
@@ -104,9 +104,6 @@ class DBMeasureServiceAdapterTest {
 
     @Test
     fun `when execute a query by rating then should return a db measure`() {
-        // given
-        givenAQueryByRating()
-
         // when
         val dbMeasure = dbMeasuresService.queryByRating()
 
@@ -117,19 +114,12 @@ class DBMeasureServiceAdapterTest {
 
     @Test
     fun `when execute a query by category and created date then should return a db measure`() {
-        // given
-        givenAQueryByCategoryAndCreatedDate()
         // when
         val dbMeasure = dbMeasuresService.queryByCategoryAndCreatedDate()
 
         // then
         thenQueryByCategoryAndCreatedDateWasExecuted()
         thenDbMeasureDescriptionWasNotEmpty(dbMeasure)
-    }
-
-    private fun givenAQueryByCategoryAndCreatedDate() {
-        whenever(noSqlBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)).thenReturn(books)
-        whenever(sqlBookRepository.findAllByCategoryAndCreatedDateAfter(category, date)).thenReturn(books)
     }
 
     private fun thenQueryByCategoryAndCreatedDateWasExecuted() {
@@ -142,19 +132,9 @@ class DBMeasureServiceAdapterTest {
         verify(sqlBookRepository).findAllByRatingGreaterThan(any())
     }
 
-    private fun givenAQueryByRating() {
-        whenever(noSqlBookRepository.findAllByRatingGreaterThan(rating)).thenReturn(books)
-        whenever(sqlBookRepository.findAllByRatingGreaterThan(rating)).thenReturn(books)
-    }
-
     private fun thenQueryByCategoryWasExecuted() {
         verify(noSqlBookRepository).findAllByCategory(any())
         verify(sqlBookRepository).findAllByCategory(any())
-    }
-
-    private fun givenAQueryByCategory() {
-        whenever(noSqlBookRepository.findAllByCategory(category)).thenReturn(books)
-        whenever(sqlBookRepository.findAllByCategory(category)).thenReturn(books)
     }
 
     private fun thenQueryByPriceAndCategoryWasExecuted() {
@@ -162,29 +142,14 @@ class DBMeasureServiceAdapterTest {
         verify(sqlBookRepository).findAllByCategoryAndPriceGreaterThan(any(), any())
     }
 
-    private fun givenAQueryByCategoryAndPrice() {
-        whenever(noSqlBookRepository.findAllByCategoryAndPriceGreaterThan(category, price)).thenReturn(books)
-        whenever(sqlBookRepository.findAllByCategoryAndPriceGreaterThan(category, price)).thenReturn(books)
-    }
-
     private fun thenQueryByPriceWasExecuted() {
         verify(noSqlBookRepository, times(1)).findAllByPriceGreaterThan(any())
         verify(sqlBookRepository, times(1)).findAllByPriceGreaterThan(any())
     }
 
-    private fun givenAQueryByPrice() {
-        whenever(noSqlBookRepository.findAllByPriceGreaterThan(price)).thenReturn(books)
-        whenever(sqlBookRepository.findAllByPriceGreaterThan(price)).thenReturn(books)
-    }
-
     private fun thenQueryByDateWasExecuted() {
         verify(noSqlBookRepository, times(1)).findAllByCreatedDateBefore(any())
         verify(sqlBookRepository, times(1)).findAllByCreatedDateBefore(any())
-    }
-
-    private fun givenAQueryByDate() {
-        whenever(noSqlBookRepository.findAllByCreatedDateBefore(date)).thenReturn(books)
-        whenever(sqlBookRepository.findAllByCreatedDateBefore(date)).thenReturn(books)
     }
 
     private fun thenScanQueriesWasExecuted() {
@@ -200,8 +165,4 @@ class DBMeasureServiceAdapterTest {
         assertNotNull(dbMeasure)
     }
 
-    private fun givenAQueryScanReport() {
-        whenever(noSqlBookRepository.findAll()).thenReturn(books)
-        whenever(sqlBookRepository.findAll()).thenReturn(books)
-    }
 }
